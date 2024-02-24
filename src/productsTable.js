@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './ProductsTable.css';
+import { API_URL } from './constants';
 
 const ProductsTable = () => {
   const [products, setProducts] = useState([]);
@@ -14,7 +15,7 @@ const ProductsTable = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/api/items');
+      const response = await axios.get(API_URL + '/items');
       setProducts(response.data);
     } catch (error) {
       console.error("Couldn't fetch products", error);
@@ -23,7 +24,7 @@ const ProductsTable = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:4000/api/items/delete/${id}`);
+      await axios.delete(`${API_URL}/items/delete/${id}`);
       setProducts(products.filter((product) => product.id !== id));
     } catch (error) {
       console.error("Couldn't delete product", error);
@@ -46,7 +47,7 @@ const ProductsTable = () => {
     try {
       if (isEditMode) {
         await axios.put(
-          `http://localhost:4000/api/items/update/${currentProduct.id}`,
+          `${API_URL}/items/update/${currentProduct.id}`,
           productData
         );
         setProducts(
@@ -59,7 +60,7 @@ const ProductsTable = () => {
         await fetchProducts();
       } else {
         const response = await axios.post(
-          'http://localhost:4000/api/items/createItem',
+          API_URL + '/items/createItem',
           productData
         );
         setProducts([...products, response.data]);
