@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './ProductsTable.css';
 import { API_URL } from './constants';
 
 const ProductsTable = () => {
