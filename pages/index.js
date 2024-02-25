@@ -1,7 +1,5 @@
-import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import ProductsTable from './productsTable'
+import ProductsTable from '../components/productsTable'
 
 export default function Home() {
   return (
